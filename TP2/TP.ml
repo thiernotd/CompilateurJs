@@ -6,8 +6,7 @@ let _ =
       let ast = Parseur.main Lexeur.token lexbuf in
       AST.print_AST Format.std_formatter ast; Format.print_newline(); flush stdout
     done
-  with 
+  with
    | Lexeur.Eof          ->  exit 0
-   | Lexeur.TokenInconu 
+   | Lexeur.TokenInconu
    | Parsing.Parse_error ->  Printf.printf ("Ceci n'est pas une expression arithmétique\n")
- 
