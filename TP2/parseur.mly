@@ -5,8 +5,9 @@ open AST
 
 %token <int> NOMBRE
 %token <float> FLOTTANT
+%token <string> IDENT
 %token <bool> BOOL
-%token PLUS MOINS FOIS DIV MODULO GPAREN DPAREN NOT AND OR EGAL INFEGAL EOL
+%token PLUS MOINS FOIS DIV MODULO GPAREN DPAREN NOT AND OR EGAL INFEGAL VIRG  INTEROGATION DEUXPOINTS EQUAL EOL
 
 %left PLUS MOINS
 %left FOIS DIV
@@ -36,10 +37,17 @@ expression:
  | NOT expression                 { Not $2 }
  | NOMBRE                         { Num $1 }
  | FLOTTANT                       { Flot $1 }
+ | IDENT                          { Ident $1 }
  | BOOL                           { Bool $1 }
  | expression PLUS terme     { Plus ($1,$3) }
  | expression MOINS terme    { Moins($1,$3) }
+ | VIRG expression            {Virg $2 }
  | terme                     { $1 }
+ |expression EGAL expression      {Egal ($1,$3)}
+ |expression EQUAL expression     {Equal ($1,$3)}
+ /* |expression INTEROGATION expression
+ DEUXPOINTS expression {  Else ($5,Then($1,$3))} */
+
  ;
 
  terme:
@@ -54,4 +62,9 @@ expression:
   | NOMBRE                    { Num $1 }
   | FLOTTANT                  { Flot $1 }
   | BOOL                      { Bool $1 }
+
   ;
+  /* programme :
+    commande 		{Commandea ($1)}
+   |commande programme 	{Instruct ($1,$2)}
+  ; */
