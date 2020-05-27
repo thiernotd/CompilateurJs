@@ -9,4 +9,4 @@ let _ =
   with
    | Lexeur.Eof          ->  exit 0
    | Lexeur.TokenInconu
-   | Parsing.Parse_error ->  Printf.printf ("Ceci n'est pas une expression arithmétique\n")
+   | Parsing.Parse_error ->  Printf.printf ("Ceci n'est pas un element du fragment0\n")
